@@ -1,15 +1,21 @@
-import Day from './component/Day';
-import DayList from './component/DayList';
-import Header from './component/Header';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import Day from './element/Day';
+import DayList from './element/DayList';
+import Header from './element/Header';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import EmptyPage from './element/EmptyPage';
 
 function App() {
   return (
+    <BrowserRouter>
     <div className='App'>
       <Header />
-      <DayList />
-      <Day />
+      <Routes>
+        <Route exact path="/" element={<DayList/>}/>
+        <Route path="/day/:day" element={<Day/>}/>
+        <Route element={<EmptyPage/>}/>
+      </Routes>
     </div>
+    </BrowserRouter>
   );
 }
 
